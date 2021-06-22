@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+    
+<title> Jobs </title>
+<?php
+    session_start();
+    require_once("navbar.php") ?>
+                                                <!-- Style -->
+<style>
+		#hero {
+		  background: url('images/all-icon/coursess.png') center center no-repeat;
+		  background-size: cover;
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  z-index: 1;
+		  height: 100%;
+		  width: 100%;
+	  }
+	  
+	  
+.sidepanel {
+  height: 1000px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  right: 0;
+  background-color: #FFF; /* white*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+}
+
+/* The sidepanel links */
+.sidepanel a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #111;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidepanel a:hover {
+  color: #FFA500;
+}
+
+/* Position and style the close button (top right corner) */
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style the button that is used to open the sidepanel */
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #808080;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #FFA500;
+}	
+
+
+
+
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+ right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #111;
+  display: block;
+  border: none;
+  background: none;
+  width:100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #FFA500;
+}
+
+/* Main content */
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: orange;
+  color: black;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #FFF;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}	  
+	    
+	  .column {
+  float: left;
+  width: 15%;
+  margin-bottom: 10px;
+  padding:  8px;
+}
+
+/* Display the columns below each other instead of side by side on small screens */
+@media screen and (width: 65 px) {
+  .column {
+    width: 50%;
+    display: ;
+  }
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+    .container {
+  padding: 16px;
+}
+
+/* Clear floats */
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+    
+
+</style>
+                                                <!-- Header -->
+<header>
+            <div class="flex container">
+                <a id="logo" href="#"> Jobs </a>
+                <nav>
+                    <button id="nav-toggle" class="hamburger-menu">
+                        <span class="strip"></span>
+                        <span class="strip"></span>
+                        <span class="strip"></span>
+                    </button>
+                    
+                    <ul id="nav-menu"> 
+                       
+                         <li><a href="Candidate.php"><img src="images/Linkedin_icon.svg.png" alt="Logo" style="width:80px;height:80px;  position:fixed; left:80px; top:20px;"></a></li>
+                        
+                        
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style = "position: fixed; right: 100px; top:50px;">
+                        
+                        <button style = "background-color: #0e76a8; border-radius: 8px; font-size: 17px; padding: 5px 12px;"><i class="fa fa-home" style="color:floralwhite; "></i> <a href="Candidate.php" style = "text-decoration: none; color: floralwhite;">Home</a></button>
+                        
+                        <button style = "background-color: #0e76a8; border-radius: 8px; font-size: 17px; padding: 5px 12px;"><a href="MyCart.php?id=<?php echo $_SESSION["id"];?>" style="color: floralwhite ; text-decoration: none;" > My Job </a></button>
+                       
+                        <button style = "background-color: #0e76a8; border-radius: 8px; font-size: 17px; padding: 5px 12px;"><a href="SearchCourses.php" style="color: floralwhite ; text-decoration: none;"> Search for job </a></button>
+                        
+                        <button style = "background-color: #0e76a8; border-radius: 8px; font-size: 17px; padding: 5px 12px;"><a href="WriteQuestion.php" style="color: floralwhite ; text-decoration: none;"> Write Question </a></button>
+                        
+                        <button style = "background-color: #0e76a8; border-radius: 8px; font-size: 17px; padding: 5px 12px;"><a href="AllQuestions.php" style="color: floralwhite ; text-decoration: none;"> All Questions </a></button>
+                        
+                        <button style = "background-color: #0e76a8; border-radius: 8px; font-size: 17px; padding: 5px 12px;"><a href="suggest.php" style="color: floralwhite ; text-decoration: none;"> suggestion </a></button>
+                        
+                        <button style = "background-color: #0e76a8; border-radius: 8px; font-size: 17px; padding: 5px 12px;"><a href="MessageHistory.php?id=<?php echo $_SESSION["id"];?>" style="color: floralwhite ; text-decoration: none;" > Messages History </a></button>
+                        
+                        <button style = "background-color: #0e76a8; border-radius: 8px; font-size: 17px; padding: 5px 12px;"><a href="ViewProfile.php?id=<?php echo $_SESSION["id"];?>" style="color: floralwhite ; text-decoration: none;"> Profile </a></button>
+                        
+                        <button style = "background-color: #0e76a8; border-radius: 8px; font-size: 17px; padding: 5px 12px;"><a href="logout.php" style="color: floralwhite ; text-decoration: none;"> Logout </a></button> 
+                        
+                        
+                        </div>
+                    </ul>
+                </nav>
+            </div>
+    </header>
+                                                <!-- Body -->
+<body>
+    
+    <div id="header-container">
+
+  
+  </div>
+    <br><Br><Br><br> <br><br> <br><br><br>
+    	<section id='item'>
+    
+  <div class="row">
+  <div class="column">
+    <div class="card">
+      <h3>Software Engineer</h3>
+      <p>photoshop  illustrator  html </p>
+      <p>Avaliable</p>
+    <button style = "background-color:green; color: white; border-radius: 8px; padding: 5px 12px;"> Apply</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button style = "background-color:gray; color: white; border-radius: 8px; padding: 5px 12px;"> save job</button>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <h3>Card 2</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <h3>Card 3</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <h3>Card 4</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+</div>
+
+
+	
+	</section>
+                                                    <!-- Footer -->
+<br><br><br><br>
+</body>
+       
+</html> 
